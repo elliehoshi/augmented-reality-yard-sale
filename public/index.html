@@ -26,18 +26,34 @@
     -->
     <title>AR Yard Sale</title>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs>
+      <a-marker
+        type="pattern"
+        preset="custom"
+        url="%PUBLIC_URL%/pattern-tdf-secret-marker.patt"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+        id="markerA"
+        markerfound-handler
+        markerlost-handler
+      >
+        <a-image
+          src="%PUBLIC_URL%/test.png"
+          scale="1 1 1"
+          class="clickable"
+          id="origami"
+          rotation="-90 0 0"
+          gesture-handler
+        ></a-image>
+      </a-marker>
+      <a-entity camera></a-entity>
+      </a-scene>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
   </body>
 </html>
